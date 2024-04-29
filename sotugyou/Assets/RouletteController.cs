@@ -12,24 +12,23 @@ public class RouletteController : MonoBehaviour
     [HideInInspector] public float rotatePerRoulette;
     [HideInInspector] public RouletteMaker rMaker;
     private string result;
-    private float rouletteSpeed;
-    private float slowDownSpeed;
-    private int frameCount;
-    private bool isStop;
     [SerializeField] private TextMeshProUGUI resultText;
     public float rotationSpeed = 5.0f;
 
+    [SerializeField] private float rouletteSpeed; // ルーレットの速度を保持する変数
+    public float RouletteSpeed => rouletteSpeed; // プロパティを介して外部からアクセスできるようにする
+
+    Slider _slider;
+
+    private void Start()
+    {
+        _slider = GameObject.Find("EnemyHP").GetComponent<Slider>();
+        _slider.value = 1f;
+    }
     private void Update()
     {
-        float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
-        roulette.transform.Rotate(Vector3.forward, scrollAmount * rotationSpeed, Space.World);
-        frameCount++;
-        if (isStop && frameCount > 3)
-        {
-            rouletteSpeed *= slowDownSpeed;
-            slowDownSpeed -= 0.25f * Time.deltaTime;
-            frameCount = 0;
-        }
+        rouletteSpeed = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed; // ルーレットの速度を更新する
+        roulette.transform.Rotate(Vector3.forward, rouletteSpeed * rotationSpeed, Space.World);
         if (rouletteSpeed < 0.05f)
         {
             ShowResult(roulette.transform.eulerAngles.z);
@@ -47,5 +46,13 @@ public class RouletteController : MonoBehaviour
             }
         }
         resultText.text = result + "HIT.";
+        if(result=="kougeki")
+        {
+            _slider.value = 0f;
+        }
+        if(result=="kaihuku")
+        {
+            _slider.value = 1f;
+        }
     }
 }
