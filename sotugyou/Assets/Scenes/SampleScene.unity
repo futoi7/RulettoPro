@@ -240,8 +240,8 @@ MonoBehaviour:
   - kougeki
   - kaihuku
   rouletteColors:
-  - {r: 0.052364707, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.055834293, a: 1}
+  - {r: 0.25866985, g: 1, b: 0, a: 1}
   rouletteImage: {fileID: 2973479826353240258, guid: a0395fc10b30c0840822f8753b0ebd4c, type: 3}
   rController: {fileID: 507320836}
 --- !u!1 &507320835
