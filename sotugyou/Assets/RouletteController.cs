@@ -28,7 +28,7 @@ public class RouletteController : MonoBehaviour
     private void Update()
     {
         rouletteSpeed = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed; // ルーレットの速度を更新する
-        roulette.transform.Rotate(Vector3.forward, rouletteSpeed * rotationSpeed, Space.World);
+        roulette.transform.Rotate(Vector3.forward, rouletteSpeed, Space.World);
         if (rouletteSpeed ==0)
         {
             ShowResult(roulette.transform.eulerAngles.z);
