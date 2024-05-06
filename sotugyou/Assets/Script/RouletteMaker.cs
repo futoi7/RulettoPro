@@ -21,6 +21,8 @@ public class RouletteMaker : MonoBehaviour
     //ルーレットのプレファブ画像
     [SerializeField] private Image rouletteImage;
 
+    [SerializeField] private GameObject rouletteUIImage;
+
     //RouletteControllerアッタッチされているオブジェクト
     [SerializeField] private RouletteController rController;
 
@@ -37,17 +39,19 @@ public class RouletteMaker : MonoBehaviour
         {
             //インスタンス化
             var obj = Instantiate(rouletteImage, imageParentTransform);
-            var childImage = obj.GetComponentInChildren<Image>();
+            var RUI =Instantiate(rouletteUIImage,imageParentTransform);
+
             //画像の色を書き換え
             obj.color= rouletteColors[(choices.Count - 1 - i)];
             //何度まで表示させるか
             obj.fillAmount = ratePerRoulette * (choices.Count - i);
             //書き換えたいプレファブの子供を探し出し書き換えている
             obj.GetComponentInChildren<TextMeshProUGUI>().text = choices[(choices.Count - 1 - i)];
-            //同じようにやろうとしたが失敗
-            //childImage.sprite = Images[(choices.Count - 1 - i)];
+
+            RUI.GetComponentInChildren<Image>().sprite = Images[(Images.Count - 1 - i)];
             //子オブジェクトの回転をさせています
             obj.transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+            RUI.transform.rotation = Quaternion.Euler(0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
             //obj.transform.GetChild(1).transform.rotation = Quaternion.Euler(0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
         }
         rController.rMaker = this;
