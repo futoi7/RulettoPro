@@ -52,7 +52,6 @@ public class RouletteController : MonoBehaviour
                 ScrollWheel = false;
                 Debug.Log("âÒì]ÇÕìØÇ∂Ç≈Ç∑ÅB");
                 ShowResult(roulette.transform.eulerAngles.z);
-               
             }
             else
             {
