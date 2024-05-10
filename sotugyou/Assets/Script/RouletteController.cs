@@ -11,20 +11,24 @@ public class RouletteController : MonoBehaviour
     [HideInInspector] public GameObject roulette;
     [HideInInspector] public float rotatePerRoulette;
     [HideInInspector] public RouletteMaker rMaker;
-    private string result;
-    [SerializeField] private TextMeshProUGUI resultText;
-    public float rotationSpeed = 5.0f;
+
+    private string result;//ルーレットの結果の格納変数
+    [SerializeField] private TextMeshProUGUI resultText;//結果の表示TEXT
+    public float rotationSpeed = 5.0f;//ルーレットの回転スピード
     private float lastScrollWheelInputTime; // 最後にマウススクロールホイールの入力があった時間
     public float stopThreshold = 1.0f; // ルーレットが停止したとみなす閾値（秒
-    private bool ScrollWheel=false;
+    private bool ScrollWheel=false;//最初のマウスホイール制御変数
     [SerializeField] private float rouletteSpeed; // ルーレットの速度を保持する変数
     public float RouletteSpeed => rouletteSpeed; // プロパティを介して外部からアクセスできるようにする
-
     private Quaternion previousRotation;//ルーレットのｚ回転の変数
-    private int frameCount = 0;
-    private int comparisonInterval = 60; // 比較間隔
+    private int frameCount = 0;//回り始めてからのフレームカウンター
+    private int comparisonInterval = 180; // 比較間隔
 
-    Slider _slider;
+    Slider _slider; //HPバー
+    [SerializeField]GameObject shieldRoulettoObject;//装備決めのシーンで使用
+    [SerializeField]GameObject WponsRoulrtto;//装備決めのシーンで使用
+
+
 
     private void Start()
     {
@@ -44,10 +48,11 @@ public class RouletteController : MonoBehaviour
         if (frameCount % comparisonInterval == 0 && ScrollWheel==true)
         {
             if (Quaternion.Angle(roulette.transform.rotation, previousRotation) == 0f&&ScrollWheel==true)
-            {
+            { 
+                ScrollWheel = false;
                 Debug.Log("回転は同じです。");
                 ShowResult(roulette.transform.eulerAngles.z);
-                ScrollWheel = false;
+               
             }
             else
             {
@@ -62,6 +67,7 @@ public class RouletteController : MonoBehaviour
 
     private void ShowResult(float x)
     {
+        //resultText.text = "Wepon:";
         for (int i = 1; i <= rMaker.choices.Count; i++)
         {
             if (((rotatePerRoulette * (i - 1) <= x) && x <= (rotatePerRoulette * i)) ||
@@ -70,14 +76,62 @@ public class RouletteController : MonoBehaviour
                 result = rMaker.choices[i - 1];
             }
         }
-        resultText.text = resultText.text + result + "hit;";
-        if (result == "kougeki")
+        
+        switch (result)
         {
-            //_slider.value = 0f;
+            //武器選択ルーレット
+            case "ken":
+                //武器が剣のとき
+                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                break;
+            case "yari":
+                //武器が槍のとき
+                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                break;
+            case "kobusi":
+                //武器が拳のとき
+                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                break;
+            case "tue":
+                //武器が杖のとき
+                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                break;
+
+
+            //防具選択ルーレット
+            case "a":
+                //防具がのとき
+                ShowRouletto(false, true, "\nshieldRouletto:");
+                break;
+            case "b":
+                //防具がのとき
+                ShowRouletto(false, true, "\nshieldRouletto:");
+                break;
+            case "c":
+                //防具がのとき
+                ShowRouletto(false, true, "\nshieldRouletto:");
+                break;
+            case "d":
+                //防具がのとき
+                ShowRouletto(false, true, "\nshieldRouletto:");
+                break;
+
+            case "kougeki":
+                //_slider.value = 0f;
+                break;
+            case "kaihuku":
+                //_slider.value = 1f;
+                break;
+
+            default:
+                break;
         }
-        if (result == "kaihuku")
-        {
-            //_slider.value = 1f;
-        }
+    }
+
+    private void ShowRouletto(bool activ, bool notactiv, string HitText)
+    {
+        resultText.text = resultText.text + HitText + result + "hit;";
+        shieldRoulettoObject.SetActive(activ);
+        WponsRoulrtto.SetActive(notactiv);
     }
 }
