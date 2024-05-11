@@ -27,6 +27,7 @@ public class RouletteController : MonoBehaviour
     Slider _slider; //HPバー
     [SerializeField]GameObject shieldRoulettoObject;//装備決めのシーンで使用
     [SerializeField]GameObject WponsRoulrtto;//装備決めのシーンで使用
+    [SerializeField] GameObject[] RoulettoORButton;//スキルルーレット
 
 
 
@@ -60,7 +61,6 @@ public class RouletteController : MonoBehaviour
             
             previousRotation = roulette.transform.rotation;
         }
-    
         frameCount++;
     }
 
@@ -81,38 +81,67 @@ public class RouletteController : MonoBehaviour
             //武器選択ルーレット
             case "ken":
                 //武器が剣のとき
-                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
                 break;
             case "yari":
                 //武器が槍のとき
-                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
                 break;
             case "kobusi":
                 //武器が拳のとき
-                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
                 break;
             case "tue":
                 //武器が杖のとき
-                ShowRouletto(true, false, "\nWponsRoulrtto:");
+                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
                 break;
 
 
             //防具選択ルーレット
             case "a":
                 //防具がのとき
-                ShowRouletto(false, true, "\nshieldRouletto:");
+                ShowWeponRouletto(false, true, "\nshieldRouletto:");
                 break;
             case "b":
                 //防具がのとき
-                ShowRouletto(false, true, "\nshieldRouletto:");
+                ShowWeponRouletto(false, true, "\nshieldRouletto:");
                 break;
             case "c":
                 //防具がのとき
-                ShowRouletto(false, true, "\nshieldRouletto:");
+                ShowWeponRouletto(false, true, "\nshieldRouletto:");
                 break;
             case "d":
                 //防具がのとき
-                ShowRouletto(false, true, "\nshieldRouletto:");
+                ShowWeponRouletto(false, true, "\nshieldRouletto:");
+                break;
+
+
+            //技選択ルーレット
+            case "kyou":
+                //とき
+                SkillRouletto("\nSkillRuletto:");
+                break;
+            case "zyaku":
+                //とき
+                SkillRouletto("\nSkillRuletto:");
+                break;
+            case "misu":
+                //とき
+                SkillRouletto("\nSkillRuletto:");
+                break;
+
+            //技選択ルーレット
+            case "oisii":
+                //とき
+                SkillRouletto("\nSkillRuletto:");
+                break;
+            case "nigai":
+                //とき
+                SkillRouletto("\nSkillRuletto:");
+                break;
+            case "karai":
+                //とき
+                SkillRouletto("\nSkillRuletto:");
                 break;
 
             case "kougeki":
@@ -127,10 +156,18 @@ public class RouletteController : MonoBehaviour
         }
     }
 
-    private void ShowRouletto(bool activ, bool notactiv, string HitText)
+    private void ShowWeponRouletto(bool activ, bool notactiv, string HitText)
     {
         resultText.text = resultText.text + HitText + result + "hit;";
         shieldRoulettoObject.SetActive(activ);
         WponsRoulrtto.SetActive(notactiv);
+    }
+
+    private void SkillRouletto(string HitText)
+    {
+        resultText.text = resultText.text + HitText + result + "hit;";
+        RoulettoORButton[0].SetActive(true);
+        RoulettoORButton[1].SetActive(true);
+        RoulettoORButton[2].SetActive(false);
     }
 }
