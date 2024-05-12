@@ -30,13 +30,12 @@ public class RouletteController : MonoBehaviour
     [SerializeField] GameObject[] RoulettoORButton;//スキルルーレット
     UIManager UIManager;
     ScrollSelect ScrollSelect;
+    HPmanegment HPmanegment;
 
 
 
     private void Start()
     {
-        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        ScrollSelect = GameObject.Find("ScrollSelect").GetComponent<ScrollSelect>();
         previousRotation = roulette.transform.rotation;
         //_slider = GameObject.Find("EnemyHP").GetComponent<Slider>();
         //_slider.value = 1f;
@@ -124,28 +123,34 @@ public class RouletteController : MonoBehaviour
             case "kyou":
                 //とき
                 SkillRouletto("\nSkillRuletto:");
+                HPmanegment.UpdateEnemyDownHP(50);
                 break;
             case "zyaku":
                 //とき
                 SkillRouletto("\nSkillRuletto:");
+                HPmanegment.UpdateEnemyDownHP(30);
                 break;
             case "misu":
                 //とき
                 SkillRouletto("\nSkillRuletto:");
+                HPmanegment.UpdateEnemyDownHP(0);
                 break;
 
             //技選択ルーレット
             case "oisii":
                 //とき
                 SkillRouletto("\nSkillRuletto:");
+                HPmanegment.UpdatePlayerUPHP(50);
                 break;
             case "nigai":
                 //とき
                 SkillRouletto("\nSkillRuletto:");
+                HPmanegment.UpdatePlayerUPHP(30);
                 break;
             case "karai":
                 //とき
                 SkillRouletto("\nSkillRuletto:");
+                HPmanegment.UpdatePlayerUPHP(10);
                 break;
 
             case "kougeki":
@@ -173,7 +178,10 @@ public class RouletteController : MonoBehaviour
         RoulettoORButton[0].SetActive(true);
         RoulettoORButton[1].SetActive(true);
         RoulettoORButton[2].SetActive(false);
+        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         UIManager.StartCountDown();
+        ScrollSelect = GameObject.Find("ScrollSelect").GetComponent<ScrollSelect>();
         ScrollSelect.currentTime = 0f;
+        HPmanegment = GameObject.Find("HPManegment").GetComponent<HPmanegment>();
     }
 }
