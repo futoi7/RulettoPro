@@ -9,12 +9,15 @@ public class ScrollSelect : MonoBehaviour
     public GameObject[] objectsToActivate;
     private int selectedIndex = 0; // 現在の選択インデックス
     private float selectionTime = 5f; // 選択時間
-    private float currentTime = 0f; // 現在の経過時間
+    public float currentTime = 0f; // 現在の経過時間
+    UIManager uiManager;
 
     void Start()
     {
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         // 最初のボタンを選択状態にする
         SelectButton(selectedIndex);
+        uiManager.StartCountDown();
     }
 
     void Update()
@@ -41,6 +44,7 @@ public class ScrollSelect : MonoBehaviour
 
         // 選択が決定されるまでの時間をカウント
         currentTime += Time.deltaTime;
+
         if (currentTime >= selectionTime)
         {
             // 選択を決定する処理をここに追加する

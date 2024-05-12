@@ -28,11 +28,15 @@ public class RouletteController : MonoBehaviour
     [SerializeField]GameObject shieldRoulettoObject;//装備決めのシーンで使用
     [SerializeField]GameObject WponsRoulrtto;//装備決めのシーンで使用
     [SerializeField] GameObject[] RoulettoORButton;//スキルルーレット
+    UIManager UIManager;
+    ScrollSelect ScrollSelect;
 
 
 
     private void Start()
     {
+        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        ScrollSelect = GameObject.Find("ScrollSelect").GetComponent<ScrollSelect>();
         previousRotation = roulette.transform.rotation;
         //_slider = GameObject.Find("EnemyHP").GetComponent<Slider>();
         //_slider.value = 1f;
@@ -169,5 +173,7 @@ public class RouletteController : MonoBehaviour
         RoulettoORButton[0].SetActive(true);
         RoulettoORButton[1].SetActive(true);
         RoulettoORButton[2].SetActive(false);
+        UIManager.StartCountDown();
+        ScrollSelect.currentTime = 0f;
     }
 }
