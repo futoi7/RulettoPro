@@ -22,7 +22,7 @@ public class RouletteController : MonoBehaviour
     public float RouletteSpeed => rouletteSpeed; // プロパティを介して外部からアクセスできるようにする
     private Quaternion previousRotation;//ルーレットのｚ回転の変数
     private int frameCount = 0;//回り始めてからのフレームカウンター
-    private int comparisonInterval = 180; // 比較間隔
+    private int comparisonInterval = 210; // 比較間隔
 
     Slider _slider; //HPバー
     [SerializeField]GameObject shieldRoulettoObject;//装備決めのシーンで使用
@@ -36,7 +36,6 @@ public class RouletteController : MonoBehaviour
 
     private void Start()
     {
-        previousRotation = roulette.transform.rotation;
         //_slider = GameObject.Find("EnemyHP").GetComponent<Slider>();
         //_slider.value = 1f;
     }
@@ -59,11 +58,10 @@ public class RouletteController : MonoBehaviour
             }
             else
             {
-                Debug.Log("回転は異なります。");
+                previousRotation = roulette.transform.rotation;
             }
-            
-            previousRotation = roulette.transform.rotation;
         }
+        
         frameCount++;
     }
 
@@ -178,6 +176,8 @@ public class RouletteController : MonoBehaviour
         RoulettoORButton[0].SetActive(true);
         RoulettoORButton[1].SetActive(true);
         RoulettoORButton[2].SetActive(false);
+        RoulettoORButton[3].SetActive(false);
+        
         UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         UIManager.StartCountDown();
         ScrollSelect = GameObject.Find("ScrollSelect").GetComponent<ScrollSelect>();

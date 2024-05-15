@@ -51,6 +51,9 @@ public class ScrollSelect : MonoBehaviour
             buttons[selectedIndex].onClick.Invoke();
             Debug.Log("Button " + selectedIndex + " selected!");
         }
+        if (!objectsToActivate[1].activeSelf)
+            currentTime = 0;
+        Debug.Log(currentTime);
     }
 
     // 指定したインデックスのボタンを選択状態にする
@@ -70,6 +73,7 @@ public class ScrollSelect : MonoBehaviour
             objectsToActivate[1].SetActive(false);
             objectsToActivate[2].SetActive(false);
             objectsToActivate[0].SetActive(true);
+            objectsToActivate[4].SetActive(true);
         }
         else
         {
@@ -77,6 +81,7 @@ public class ScrollSelect : MonoBehaviour
             objectsToActivate[1].SetActive(false);
             objectsToActivate[2].SetActive(false);
             objectsToActivate[3].SetActive(true);
+            objectsToActivate[4].SetActive(true);
         }
        
     }
