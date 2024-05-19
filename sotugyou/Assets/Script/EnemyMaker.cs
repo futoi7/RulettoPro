@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyRouletteMaker : MonoBehaviour
+public class EnemyMaker : MonoBehaviour
 {
     //インスタンス化する座標
     [SerializeField] private Transform imageParentTransform;
@@ -24,7 +24,7 @@ public class EnemyRouletteMaker : MonoBehaviour
     [SerializeField] private GameObject rouletteUIImage;
 
     //RouletteControllerアッタッチされているオブジェクト
-    [SerializeField] private EnemyRoulettoController rController;
+    [SerializeField] private EnemyRoulette rController;
 
     public float ratePerRoulette;
     public float rotatePerRoulette;
