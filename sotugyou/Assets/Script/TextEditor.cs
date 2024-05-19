@@ -55,7 +55,7 @@ public class TextEditor : MonoBehaviour
                 this.GetComponent<TextMeshProUGUI>().text = displayText;//画面上にdisplayTextを表示
                 click = false;//クリックされた判定を解除
             }
-            if (Input.GetMouseButton(0))//マウスをクリックしたら
+            if (Input.GetMouseButtonDown(0))//マウスをクリックしたら
             {
                 click = true; //クリックされた判定にする
             }
