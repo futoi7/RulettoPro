@@ -16,13 +16,13 @@ public class EnemyRoulette : MonoBehaviour
     private bool isSpinning = false; // ルーレットが回転しているかどうかのフラグ
     public float minDecelerationRate = 0.98f; // 最小減速率
     public float maxDecelerationRate = 0.995f; // 最大減速率
-    public float minimumSpeed = 0.1f; // 最低速度
+    public float minimumSpeed = 1f; // 最低速度
 
     HPmanegment HPmanegment;
 
     private void Start()
     {
-        StartRoulette(); // スタート時にルーレットを自動で回転させる
+        
     }
 
     private void Update()
@@ -30,6 +30,10 @@ public class EnemyRoulette : MonoBehaviour
         if (isSpinning)
         {
             roulette.transform.Rotate(Vector3.forward, rouletteSpeed * Time.deltaTime, Space.World);
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartRoulette(); // スタート時にルーレットを自動で回転させる
         }
     }
 
