@@ -17,12 +17,19 @@ public class EnemyRoulette : MonoBehaviour
     public float minDecelerationRate = 0.98f; // 最小減速率
     public float maxDecelerationRate = 0.995f; // 最大減速率
     public float minimumSpeed = 0.1f; // 最低速度
+    public bool IsSpinning => isSpinning;
 
     HPmanegment HPmanegment;
 
+    // イベントを宣言
+    public event System.Action OnRouletteStopped;
+
     private void Start()
     {
-        StartRoulette(); // スタート時にルーレットを自動で回転させる
+        if (roulette == null)
+        {
+            roulette = gameObject; // ルーレットが設定されていない場合、自身をルーレットとして設定
+        }
     }
 
     private void Update()
@@ -75,33 +82,34 @@ public class EnemyRoulette : MonoBehaviour
         switch (result)
         {
             // 技選択ルーレット
-            case "kyou":
+            case "きょう":
                 EnemyAttack();
-                HPmanegment.UpdateEnemyDownHP(50);
+                HPmanegment.UpdatePlayerDownHP(50);
                 break;
-            case "zyaku":
+            case "じゃく":
                 EnemyAttack();
-                HPmanegment.UpdateEnemyDownHP(30);
+                HPmanegment.UpdatePlayerDownHP(30);
                 break;
             case "misu":
-                HPmanegment.UpdateEnemyDownHP(0);
+                HPmanegment.UpdatePlayerDownHP(0);
                 break;
 
             // 技選択ルーレット
             case "oisii":
-                HPmanegment.UpdatePlayerUPHP(50);
+                HPmanegment.UpdateEnemyUPHP(50);
                 break;
             case "nigai":
-                HPmanegment.UpdatePlayerUPHP(30);
+                HPmanegment.UpdateEnemyUPHP(30);
                 break;
             case "karai":
-                HPmanegment.UpdatePlayerUPHP(10);
+                HPmanegment.UpdateEnemyUPHP(10);
                 break;
 
             default:
                 break;
         }
     }
+
     private void EnemyAttack()
     {
         HPmanegment = GameObject.Find("HPManegment").GetComponent<HPmanegment>();

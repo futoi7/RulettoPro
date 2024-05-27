@@ -45,7 +45,7 @@ public class HPmanegment : MonoBehaviour
     // UIにHPの値を反映するメソッド
     void UpdateUI()
     {
-        PlayerHPText.text = "Player HP: " + PlayerHP.ToString();
-        EnemyHPText.text = "Enemy HP: " + EnemyHP.ToString();
+        PlayerHPText.text = "ぷれいやー: " + PlayerHP.ToString();
+        EnemyHPText.text = "てき: " + EnemyHP.ToString();
     }
 }

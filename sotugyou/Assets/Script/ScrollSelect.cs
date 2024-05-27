@@ -73,14 +73,49 @@ public class ScrollSelect : MonoBehaviour
             objectsToActivate[1].SetActive(false);
             objectsToActivate[2].SetActive(false);
             objectsToActivate[0].SetActive(true);
+            //ルーレットオブジェクトの子供を全部アクティブにしている
+            {
+                // 親オブジェクトを取得する
+                GameObject parentObject = objectsToActivate[0];
+
+                // 親オブジェクトのすべての子供をループで取得して非アクティブにする
+                foreach (Transform child in parentObject.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+
+                parentObject = objectsToActivate[5];
+                foreach (Transform child in parentObject.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
             objectsToActivate[4].SetActive(true);
         }
+
         else
         {
             currentTime = 0f;
             objectsToActivate[1].SetActive(false);
             objectsToActivate[2].SetActive(false);
             objectsToActivate[3].SetActive(true);
+            //ルーレットオブジェクトの子供を全部アクティブにしている
+            {
+                // 親オブジェクトを取得する
+                GameObject parentObject = objectsToActivate[3];
+
+                // 親オブジェクトのすべての子供をループで取得して非アクティブにする
+                foreach (Transform child in parentObject.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+
+                parentObject = objectsToActivate[6];
+                foreach (Transform child in parentObject.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
             objectsToActivate[4].SetActive(true);
         }
        

@@ -32,22 +32,31 @@ public class RouletteController : MonoBehaviour
     ScrollSelect ScrollSelect;
     HPmanegment HPmanegment;
 
+    [SerializeField] GameObject enemyroulette;
+    [SerializeField] EnemyRoulette enemyScript;
+
 
 
     private void Start()
     {
+        HPmanegment = GameObject.Find("HPManegment").GetComponent<HPmanegment>();
+        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        ScrollSelect = GameObject.Find("ScrollSelect").GetComponent<ScrollSelect>();
         //_slider = GameObject.Find("EnemyHP").GetComponent<Slider>();
         //_slider.value = 1f;
     }
 
     private void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f)     // マウスホイールが回された場合
-            ScrollWheel = true; // フラグを下ろして、以降の処理を実行可能にする
+        if (enemyScript != null && !enemyScript.IsSpinning)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") != 0f)     // マウスホイールが回された場合
+                ScrollWheel = true; // フラグを下ろして、以降の処理を実行可能にする
 
-        rouletteSpeed = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed; // ルーレットの速度を更新する
-        roulette.transform.Rotate(Vector3.forward, rouletteSpeed, Space.World);
-
+            rouletteSpeed = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed; // ルーレットの速度を更新する
+            roulette.transform.Rotate(Vector3.forward, rouletteSpeed, Space.World);
+        }
+            
         if (frameCount % comparisonInterval == 0 && ScrollWheel==true)
         {
             if (Quaternion.Angle(roulette.transform.rotation, previousRotation) == 0f&&ScrollWheel==true)
@@ -118,37 +127,38 @@ public class RouletteController : MonoBehaviour
 
 
             //技選択ルーレット
-            case "kyou":
+            case "きょう":
                 //とき
-                SkillRouletto("\nSkillRuletto:");
                 HPmanegment.UpdateEnemyDownHP(50);
+                SkillRouletto("\n攻撃:");
+                
                 break;
-            case "zyaku":
+            case "じゃく":
                 //とき
-                SkillRouletto("\nSkillRuletto:");
                 HPmanegment.UpdateEnemyDownHP(30);
+                SkillRouletto("\n攻撃:");
                 break;
-            case "misu":
+            case "みす":
                 //とき
-                SkillRouletto("\nSkillRuletto:");
                 HPmanegment.UpdateEnemyDownHP(0);
+                SkillRouletto("\n攻撃:");
                 break;
 
             //技選択ルーレット
-            case "oisii":
+            case "おいしい":
                 //とき
-                SkillRouletto("\nSkillRuletto:");
                 HPmanegment.UpdatePlayerUPHP(50);
+                SkillRouletto("\n回復:");
                 break;
-            case "nigai":
+            case "にがい":
                 //とき
-                SkillRouletto("\nSkillRuletto:");
                 HPmanegment.UpdatePlayerUPHP(30);
+                SkillRouletto("\n回復:");
                 break;
-            case "karai":
+            case "からい":
                 //とき
-                SkillRouletto("\nSkillRuletto:");
                 HPmanegment.UpdatePlayerUPHP(10);
+                SkillRouletto("\n回復:");
                 break;
 
             case "kougeki":
@@ -165,23 +175,52 @@ public class RouletteController : MonoBehaviour
 
     private void ShowWeponRouletto(bool activ, bool notactiv, string HitText)
     {
-        resultText.text = resultText.text + HitText + result + "hit;";
+        resultText.text = resultText.text + HitText + result + "的中！";
         shieldRoulettoObject.SetActive(activ);
         WponsRoulrtto.SetActive(notactiv);
     }
 
     private void SkillRouletto(string HitText)
     {
-        resultText.text = resultText.text + HitText + result + "hit;";
+
+        resultText.text = resultText.text + HitText + result + "的中！";
+
+        //ルーレットのimageを非表示にしてる
+        {
+            // 親オブジェクトを取得する
+            GameObject parentObject = RoulettoORButton[2];
+
+            // 親オブジェクトのすべての子供をループで取得して非アクティブにする
+            foreach (Transform child in parentObject.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+        
+        RoulettoORButton[3].SetActive(false);
+        enemyroulette.SetActive(true);
+        enemyScript.StartRoulette();
+
+        StartCoroutine(WaitForEnemyRouletteToStop());
+    }
+
+    private IEnumerator WaitForEnemyRouletteToStop()
+    {
+        // ルーレットが停止するまで待機
+        yield return new WaitUntil(() => !enemyScript.IsSpinning);
+
+        // ルーレットが停止した後の処理
+        enemyroulette.SetActive(false);
         RoulettoORButton[0].SetActive(true);
         RoulettoORButton[1].SetActive(true);
-        RoulettoORButton[2].SetActive(false);
-        RoulettoORButton[3].SetActive(false);
-        
-        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
         UIManager.StartCountDown();
-        ScrollSelect = GameObject.Find("ScrollSelect").GetComponent<ScrollSelect>();
         ScrollSelect.currentTime = 0f;
-        HPmanegment = GameObject.Find("HPManegment").GetComponent<HPmanegment>();
+
+        RoulettoORButton[2].SetActive(false);
+        RoulettoORButton[4].SetActive(false);
+       
+        
+        
     }
 }

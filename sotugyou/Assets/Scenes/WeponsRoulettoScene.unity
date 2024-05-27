@@ -512,9 +512,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1544359216}
     - target: {fileID: 9195153716549271082, guid: d5eeedcc18ab76f429888a33af3a8c8b, type: 3}
+      propertyPath: shieldRouletteObject
+      value: 
+      objectReference: {fileID: 408429797}
+    - target: {fileID: 9195153716549271082, guid: d5eeedcc18ab76f429888a33af3a8c8b, type: 3}
       propertyPath: shieldRoulettoObject
       value: 
       objectReference: {fileID: 408429797}
+    - target: {fileID: 9195153716549271082, guid: d5eeedcc18ab76f429888a33af3a8c8b, type: 3}
+      propertyPath: weaponsRouletteObject
+      value: 
+      objectReference: {fileID: 1544359216}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
