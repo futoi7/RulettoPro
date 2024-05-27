@@ -219,8 +219,5 @@ public class RouletteController : MonoBehaviour
 
         RoulettoORButton[2].SetActive(false);
         RoulettoORButton[4].SetActive(false);
-       
-        
-        
     }
 }
