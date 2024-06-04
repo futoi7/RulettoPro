@@ -25,21 +25,13 @@ public class WeponRouletto : MonoBehaviour
     private int comparisonInterval = 210; // 比較間隔
     [SerializeField] GameObject WponsRoulrtto;//装備決めのシーンで使用
 
-
-
-
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
-            if (Input.GetAxis("Mouse ScrollWheel") != 0f)     // マウスホイールが回された場合
-                ScrollWheel = true; // フラグを下ろして、以降の処理を実行可能にする
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)     // マウスホイールが回された場合
+            ScrollWheel = true; // フラグを下ろして、以降の処理を実行可能にする
 
-            rouletteSpeed = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed; // ルーレットの速度を更新する
-            roulette.transform.Rotate(Vector3.forward, rouletteSpeed, Space.World);
+        rouletteSpeed = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed; // ルーレットの速度を更新する
+        roulette.transform.Rotate(Vector3.forward, rouletteSpeed, Space.World);
 
         if (frameCount % comparisonInterval == 0 && ScrollWheel == true)
         {
@@ -82,6 +74,8 @@ public class WeponRouletto : MonoBehaviour
             case "yari":
                 //武器が槍のとき
                 ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
+                Weit();
+                SceneManager.LoadScene("MaingameScene");
                 break;
             case "kobusi":
                 //武器が拳のとき
@@ -103,7 +97,7 @@ public class WeponRouletto : MonoBehaviour
     }
     IEnumerator Weit()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
         //遅らせたい処理
     }
 }
