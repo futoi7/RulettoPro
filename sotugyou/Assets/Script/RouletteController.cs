@@ -103,7 +103,7 @@ public class RouletteController : MonoBehaviour
                 break;
             case "‚İ‚·":
                 //‚Æ‚«
-                HPmanegment.UpdateEnemyDownHP(0);
+                HPmanegment.UpdateEnemyDownHP(0f);
                 SkillRouletto("\nUŒ‚:");
                 break;
 

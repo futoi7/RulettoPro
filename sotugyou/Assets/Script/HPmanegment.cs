@@ -61,15 +61,30 @@ public class HPmanegment : MonoBehaviour
     // UIにHPの値を反映するメソッド
     void UpdateUI()
     {
-        PlayerHPText.text = "ぷれいやー: " + PlayerHP.ToString();
-        EnemyHPText.text = "てき: " + EnemyHP.ToString();
         if (PlayerHP <= 0)
         {
-            SceneManager.LoadScene("EndScene");
+            PlayerHP = 0;
+            PlayerHPText.text = "ぷれいやー: " + PlayerHP.ToString();
+            StartCoroutine(Weit("EndScene"));
         }
-        if (EnemyHP <= 0)
+        else if (EnemyHP <= 0)
         {
-            SceneManager.LoadScene("CrearScene");
+            EnemyHP = 0;
+            EnemyHPText.text = "てき: " + EnemyHP.ToString();
+            StartCoroutine(Weit("CrearScene"));
         }
+        else
+        {
+            PlayerHPText.text = "ぷれいやー: " + PlayerHP.ToString();
+            EnemyHPText.text = "てき: " + EnemyHP.ToString();
+        }
+    }
+
+    IEnumerator Weit(string sceneName)
+    {
+        Time.timeScale = 0; // ゲームを一時停止
+        yield return new WaitForSecondsRealtime(1.0f);
+        Time.timeScale = 1; // ゲームを再開
+        SceneManager.LoadScene(sceneName);
     }
 }
