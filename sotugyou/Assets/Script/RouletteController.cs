@@ -129,13 +129,13 @@ public class RouletteController : MonoBehaviour
             //‹Z‘I‘ğƒ‹[ƒŒƒbƒg
             case "‚«‚å‚¤":
                 //‚Æ‚«
-                HPmanegment.UpdateEnemyDownHP(50);
+                HPmanegment.UpdateEnemyDownHP(1f);
                 SkillRouletto("\nUŒ‚:");
                 
                 break;
             case "‚¶‚á‚­":
                 //‚Æ‚«
-                HPmanegment.UpdateEnemyDownHP(30);
+                HPmanegment.UpdateEnemyDownHP(0.5f);
                 SkillRouletto("\nUŒ‚:");
                 break;
             case "‚İ‚·":

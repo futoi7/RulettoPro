@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Diagnostics;
 
 public class HPmanegment : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI PlayerHPText;
     [SerializeField] private TextMeshProUGUI EnemyHPText;
-    public int PlayerHP = 100; // プレイヤーのHPを初期化
-    public int EnemyHP = 100; // エネミーのHPを初期化
+    [SerializeField] private TextMeshProUGUI WeponText;
+    public float PlayerHP = 100; // プレイヤーのHPを初期化
+    public float EnemyHP = 100; // エネミーのHPを初期化
+    public float PlayerAtack = 30;
+    public float Weponstate=0;
 
     // Start is called before the first frame update
     void Start()
     {
+        switch (WeponRouletto.result) {
+            case "ken":
+                Weponstate = 20;
+                WeponText.text = "ぷれいやー武器:" + WeponRouletto.result;
+                break;
+            case "yari":
+                Weponstate = 10;
+                WeponText.text = "ぷれいやー武器:" + WeponRouletto.result;
+                break;
+        }
+
         // HPの初期値をUIに反映
         UpdateUI();
     }
@@ -29,9 +44,9 @@ public class HPmanegment : MonoBehaviour
     }
 
     // エネミーのHPを更新するメソッド
-    public void UpdateEnemyDownHP(int newHP)
+    public void UpdateEnemyDownHP(float newHP)
     {
-        EnemyHP -= newHP;
+        EnemyHP -= (30 + Weponstate) * newHP;
         UpdateUI();
     }
 

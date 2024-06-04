@@ -12,7 +12,7 @@ public class WeponRouletto : MonoBehaviour
     [HideInInspector] public float rotatePerRoulette;
     [HideInInspector] public WeponRouletteMaker rMaker;
 
-    private string result;//ルーレットの結果の格納変数
+    public static string result;//ルーレットの結果の格納変数
     [SerializeField] private TextMeshProUGUI resultText;//結果の表示TEXT
     public float rotationSpeed = 5.0f;//ルーレットの回転スピード
     private float lastScrollWheelInputTime; // 最後にマウススクロールホイールの入力があった時間
@@ -76,6 +76,8 @@ public class WeponRouletto : MonoBehaviour
             case "ken":
                 //武器が剣のとき
                 ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
+                Weit();
+                SceneManager.LoadScene("MaingameScene");
                 break;
             case "yari":
                 //武器が槍のとき
@@ -98,5 +100,10 @@ public class WeponRouletto : MonoBehaviour
     private void ShowWeponRouletto(bool activ, bool notactiv, string HitText)
     {
         resultText.text = resultText.text + HitText + result + "的中！";
+    }
+    IEnumerator Weit()
+    {
+        yield return new WaitForSeconds(2.0f);
+        //遅らせたい処理
     }
 }

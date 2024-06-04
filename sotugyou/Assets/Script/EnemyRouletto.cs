@@ -21,8 +21,8 @@ public class EnemyRoulette : MonoBehaviour
 
     HPmanegment HPmanegment;
 
-    // ƒCƒxƒ“ƒg‚ğéŒ¾
-    public event System.Action OnRouletteStopped;
+
+   
 
     private void Start()
     {
