@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 9f40bc09dc39f0e4ea8d895a970483c6
+  - enabled: 1
+    path: Assets/Scenes/WeponsRoulettoScene.unity
+    guid: bb6ba83597c67f440b305c9fc538d558
   m_configObjects: {}

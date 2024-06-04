@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Diagnostics;
+using UnityEngine.SceneManagement;
 
 public class HPmanegment : MonoBehaviour
 {
@@ -62,5 +63,13 @@ public class HPmanegment : MonoBehaviour
     {
         PlayerHPText.text = "Ç’ÇÍÇ¢Ç‚Å[: " + PlayerHP.ToString();
         EnemyHPText.text = "ÇƒÇ´: " + EnemyHP.ToString();
+        if (PlayerHP <= 0)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+        if (EnemyHP <= 0)
+        {
+            SceneManager.LoadScene("CrearScene");
+        }
     }
 }

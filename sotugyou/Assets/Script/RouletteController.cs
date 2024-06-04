@@ -85,53 +85,16 @@ public class RouletteController : MonoBehaviour
                 result = rMaker.choices[i - 1];
             }
         }
-        
+
         switch (result)
         {
-            //武器選択ルーレット
-            case "ken":
-                //武器が剣のとき
-                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
-                break;
-            case "yari":
-                //武器が槍のとき
-                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
-                break;
-            case "kobusi":
-                //武器が拳のとき
-                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
-                break;
-            case "tue":
-                //武器が杖のとき
-                ShowWeponRouletto(true, false, "\nWponsRoulrtto:");
-                break;
-
-
-            //防具選択ルーレット
-            case "a":
-                //防具がのとき
-                ShowWeponRouletto(false, true, "\nshieldRouletto:");
-                break;
-            case "b":
-                //防具がのとき
-                ShowWeponRouletto(false, true, "\nshieldRouletto:");
-                break;
-            case "c":
-                //防具がのとき
-                ShowWeponRouletto(false, true, "\nshieldRouletto:");
-                break;
-            case "d":
-                //防具がのとき
-                ShowWeponRouletto(false, true, "\nshieldRouletto:");
-                break;
-
-
             //技選択ルーレット
             case "きょう":
                 //とき
+                //ここに攻撃アクションを追加する
                 HPmanegment.UpdateEnemyDownHP(1f);
                 SkillRouletto("\n攻撃:");
-                
+
                 break;
             case "じゃく":
                 //とき
@@ -173,16 +136,9 @@ public class RouletteController : MonoBehaviour
         }
     }
 
-    private void ShowWeponRouletto(bool activ, bool notactiv, string HitText)
-    {
-        resultText.text = resultText.text + HitText + result + "的中！";
-        shieldRoulettoObject.SetActive(activ);
-        WponsRoulrtto.SetActive(notactiv);
-    }
-
     private void SkillRouletto(string HitText)
     {
-
+        resultText.text = "";
         resultText.text = resultText.text + HitText + result + "的中！";
 
         //ルーレットのimageを非表示にしてる

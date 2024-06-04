@@ -1986,7 +1986,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 508.98462, y: 432.77002}
+  m_AnchoredPosition: {x: 508.98462, y: -367}
   m_SizeDelta: {x: 309.3873, y: 31.6905}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142972862
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4294950912
   m_fontColor: {r: 0, g: 0.75355816, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -40.188484}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
